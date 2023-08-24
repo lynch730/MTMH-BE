@@ -1,0 +1,52 @@
+Loading compiler version 2022.2.1
+Loading tbb version 2021.7.1
+Loading compiler-rt version 2022.2.1
+Loading oclfpga version 2022.2.1
+  Load "debugger" to debug DPC++ applications with the gdb-oneapi debugger.
+  Load "dpl" for additional DPC++ APIs: https://github.com/oneapi-src/oneDPL
+Removing compiler-rt version 2022.2.1
+Use `module list` to view any remaining dependent modules.
+Loading compiler-rt version 2022.2.1
+Loading advisor version 2022.3.1
+Loading ccl version 2021.7.1
+Loading dal version 2021.7.1
+Loading debugger version 2021.7.1
+Loading dnnl version 2022.2.1
+Loading mkl version 2022.2.1
+Loading mpi version 2021.7.1
+Removing tbb version 2021.7.1
+Use `module list` to view any remaining dependent modules.
+Loading tbb version 2021.7.1
+Loading vtune version 2022.4.1
+Loading itac version 2021.7.1
+Loading inspector version 2022.3.1
+Loading dpl version 2021.7.2
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2022 The MathWorks, Inc.
+                  R2022a (9.12.0.1884302) 64-bit (glnxa64)
+                             February 16, 2022
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+ Bol: i: 1/9 k: 1/2
+ Bol: i: 2/9 k: 1/2
+ Bol: i: 3/9 k: 1/2
+ Bol: i: 4/9 k: 1/2
+ Bol: i: 5/9 k: 1/2
+ Bol: i: 6/9 k: 1/2
+ Bol: i: 7/9 k: 1/2
+ Bol: i: 8/9 k: 1/2
+ Bol: i: 9/9 k: 1/2
+ Bol: i: 1/9 k: 2/2
+ Bol: i: 2/9 k: 2/2
+ Bol: i: 3/9 k: 2/2
+ Bol: i: 4/9 k: 2/2
+ Bol: i: 5/9 k: 2/2
+ Bol: i: 6/9 k: 2/2
+ Bol: i: 7/9 k: 2/2
+ Bol: i: 8/9 k: 2/2
+ Bol: i: 9/9 k: 2/2

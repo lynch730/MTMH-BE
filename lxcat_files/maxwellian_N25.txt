@@ -1,0 +1,89 @@
+LXCat, www.lxcat.net
+Generated on 03 Jun 2018. All rights reserved.
+
+RECOMMENDED REFERENCE FORMAT
+- Biagi database, www.lxcat.net, retrieved on June 3, 2018.
+Be aware that some databases and solvers can additionally have instructions how to reference corresponding data.
+Please check below in the headers of databases.
+
+CROSS SECTION DATA FORMAT
+In downloaded files, each collision process is defined by a block consisting of
+1st line
+Keyword in capitals indicating the type of the collision. Possible collision types are elastic, effective, excitation,
+ionization, or attachment (capital letters required, key words are case sensitive), where "elastic" is used to denote
+the elastic momentum transfer cross section and where "effective" denotes the total momentum transfer cross section (sum
+of elastic momentum transfer and total inelastic cross sections).  The latter is useful for solving the Boltzmann
+equation in the 2-term approximation.
+2nd line
+Name of the target particle species. This name is a character string, freely chosen by the user, e.g. "Ar". Optionally
+for excitation processes, the name of the corresponding excited state can be specified on the same line, separated from
+the first name either by arrow "->" (dash + greater than) or by double-head arrow "<->" (less than + dash +
+greater than), e.g. "Ar -> Ar*" and "Ar <-> Ar*", respectively. In the later case BOLSIG+ will automatically
+define the inverse superelastic process, constructing the superelastic cross-section by detailed balancing, and
+considering the indicated excited state as the target. In this case, the ratio of statistical weights must be input in
+the 3rd line (see below).  Alternatively, superelastic collisions could be defined explicitly as excitation collisions
+with a negative electron energy loss with user input cross sections and species name, "Ar*", for example.
+3rd line
+For elastic and effective collisions, the ratio of the electron mass to the target particle mass. For excitation or
+ionization collisions, the electron energy loss (nominally the threshold energy) in eV. For attachment, the 3rd line is
+missing. In case of an excitation process where an excited state has been indicated on the 2nd line using double-head
+arrow "<->", the 3rd line must specify also ratio of the statistical weights of the final state to the initial state
+as the second parameter in 3rd line this is needed by BOLSIG+ to calculate the de-excitation cross-section.
+from 4th line (optionally)
+User comments and reference information, maximum 100 lines. The only constraint on format is that these comment lines
+must not start with a number.
+Finally
+Table of the cross section as a function of energy. The table starts and ends by a line of dashes "------" (at least 5),
+and has otherwise two numbers per line: the energy in eV and the cross section in m2.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Constant collision frequency model (margeanu solution), set to nu = 1e12 1/s (1 THz) in Gas at STP (N=101325/Kb/300). shown below are sigma=6.892269139775872e-20 / sqrt(eps). 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+************************************************************************************************************************
+
+COMMENT: Transcribed from S.F. Biagi's Fortran Magboltz version 8.97 (Sept 2011). 
+         Data are based in part on the calculations of Zatsarinny and Bartschat.  See BSR database on this site.
+
+********************************************************** Ar **********************************************************
+
+ELASTIC
+Ar
+ 1.371449772656014e-04
+SPECIES: e / Ar
+PROCESS: E + Ar -> E + Ar, Elastic
+PARAM.:  m/M = 0.0000136, complete set
+COMMENT: elastic momentum transfer from Magboltz 8.97 Sept 2011.  Note that the energy resolution
+COMMENT: in the LXCat tables for energy < 1 eV is less than for the original data.
+UPDATED: 2014-10-03 16:39:59
+COLUMNS: Energy (eV) | Cross section (m2)
+-----------------------------
+0.00100000000000000	2.17952687285812e-18
+0.00177827941003892	1.63441458104078e-18
+0.00316227766016838	1.22563802997101e-18
+0.00562341325190349	9.19098861412900e-19
+0.0100000000000000	6.89226913977587e-19
+0.0177827941003892	5.16847271707871e-19
+0.0316227766016838	3.87580776163011e-19
+0.0562341325190349	2.90644579693221e-19
+0.100000000000000	2.17952687285812e-19
+0.177827941003892	1.63441458104078e-19
+0.316227766016838	1.22563802997101e-19
+0.562341325190349	9.19098861412900e-20
+1	6.89226913977587e-20
+1.77827941003892	5.16847271707871e-20
+3.16227766016838	3.87580776163011e-20
+5.62341325190349	2.90644579693221e-20
+10	2.17952687285812e-20
+17.7827941003892	1.63441458104078e-20
+31.6227766016838	1.22563802997101e-20
+56.2341325190349	9.19098861412900e-21
+100	6.89226913977587e-21
+177.827941003892	5.16847271707871e-21
+316.227766016838	3.87580776163011e-21
+562.341325190349	2.90644579693221e-21
+1000	2.17952687285812e-21
+-----------------------------
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

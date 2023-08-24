@@ -1,0 +1,43 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2022 The MathWorks, Inc.
+                  R2022a (9.12.0.1884302) 64-bit (glnxa64)
+                             February 16, 2022
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+
+ Mat: i: 1/16 k: 1/2, Avg. Time: 0.003730 sec
+ Mat: i: 2/16 k: 1/2, Avg. Time: 0.004688 sec
+ Mat: i: 3/16 k: 1/2, Avg. Time: 0.004892 sec
+ Mat: i: 4/16 k: 1/2, Avg. Time: 0.004927 sec
+ Mat: i: 5/16 k: 1/2, Avg. Time: 0.006016 sec
+ Mat: i: 6/16 k: 1/2, Avg. Time: 0.005477 sec
+ Mat: i: 7/16 k: 1/2, Avg. Time: 0.005492 sec
+ Mat: i: 8/16 k: 1/2, Avg. Time: 0.005380 sec
+ Mat: i: 9/16 k: 1/2, Avg. Time: 0.005600 sec
+ Mat: i: 10/16 k: 1/2, Avg. Time: 0.007315 sec
+ Mat: i: 11/16 k: 1/2, Avg. Time: 0.006705 sec
+ Mat: i: 12/16 k: 1/2, Avg. Time: 0.007343 sec
+ Mat: i: 13/16 k: 1/2, Avg. Time: 0.007714 sec
+ Mat: i: 14/16 k: 1/2, Avg. Time: 0.006936 sec
+ Mat: i: 15/16 k: 1/2, Avg. Time: 0.007761 sec
+ Mat: i: 16/16 k: 1/2, Avg. Time: 0.008484 sec
+ Mat: i: 1/16 k: 2/2, Avg. Time: 0.060756 sec
+ Mat: i: 2/16 k: 2/2, Avg. Time: 0.076017 sec
+ Mat: i: 3/16 k: 2/2, Avg. Time: 0.083992 sec
+ Mat: i: 4/16 k: 2/2, Avg. Time: 0.089328 sec
+ Mat: i: 5/16 k: 2/2, Avg. Time: 0.107148 sec
+ Mat: i: 6/16 k: 2/2, Avg. Time: 0.110664 sec
+ Mat: i: 7/16 k: 2/2, Avg. Time: 0.124011 sec
+ Mat: i: 8/16 k: 2/2, Avg. Time: 0.147709 sec
+ Mat: i: 9/16 k: 2/2, Avg. Time: 0.166113 sec
+ Mat: i: 10/16 k: 2/2, Avg. Time: 0.192510 sec
+ Mat: i: 11/16 k: 2/2, Avg. Time: 0.275161 sec
+ Mat: i: 12/16 k: 2/2, Avg. Time: 0.294522 sec
+ Mat: i: 13/16 k: 2/2, Avg. Time: 0.309370 sec
+ Mat: i: 14/16 k: 2/2, Avg. Time: 0.335936 sec
+ Mat: i: 15/16 k: 2/2, Avg. Time: 0.346608 sec
+ Mat: i: 16/16 k: 2/2, Avg. Time: 0.373453 sec

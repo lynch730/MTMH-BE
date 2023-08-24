@@ -1,0 +1,164 @@
+LXCat, www.lxcat.net
+Generated on 03 Jun 2018. All rights reserved.
+
+RECOMMENDED REFERENCE FORMAT
+- Biagi database, www.lxcat.net, retrieved on June 3, 2018.
+Be aware that some databases and solvers can additionally have instructions how to reference corresponding data.
+Please check below in the headers of databases.
+
+CROSS SECTION DATA FORMAT
+In downloaded files, each collision process is defined by a block consisting of
+1st line
+Keyword in capitals indicating the type of the collision. Possible collision types are elastic, effective, excitation,
+ionization, or attachment (capital letters required, key words are case sensitive), where "elastic" is used to denote
+the elastic momentum transfer cross section and where "effective" denotes the total momentum transfer cross section (sum
+of elastic momentum transfer and total inelastic cross sections).  The latter is useful for solving the Boltzmann
+equation in the 2-term approximation.
+2nd line
+Name of the target particle species. This name is a character string, freely chosen by the user, e.g. "Ar". Optionally
+for excitation processes, the name of the corresponding excited state can be specified on the same line, separated from
+the first name either by arrow "->" (dash + greater than) or by double-head arrow "<->" (less than + dash +
+greater than), e.g. "Ar -> Ar*" and "Ar <-> Ar*", respectively. In the later case BOLSIG+ will automatically
+define the inverse superelastic process, constructing the superelastic cross-section by detailed balancing, and
+considering the indicated excited state as the target. In this case, the ratio of statistical weights must be input in
+the 3rd line (see below).  Alternatively, superelastic collisions could be defined explicitly as excitation collisions
+with a negative electron energy loss with user input cross sections and species name, "Ar*", for example.
+3rd line
+For elastic and effective collisions, the ratio of the electron mass to the target particle mass. For excitation or
+ionization collisions, the electron energy loss (nominally the threshold energy) in eV. For attachment, the 3rd line is
+missing. In case of an excitation process where an excited state has been indicated on the 2nd line using double-head
+arrow "<->", the 3rd line must specify also ratio of the statistical weights of the final state to the initial state
+as the second parameter in 3rd line this is needed by BOLSIG+ to calculate the de-excitation cross-section.
+from 4th line (optionally)
+User comments and reference information, maximum 100 lines. The only constraint on format is that these comment lines
+must not start with a number.
+Finally
+Table of the cross section as a function of energy. The table starts and ends by a line of dashes "------" (at least 5),
+and has otherwise two numbers per line: the energy in eV and the cross section in m2.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Constant collision frequency model (margeanu solution), set to nu = 1e12 1/s (1 THz) in Gas at STP (N=101325/Kb/300). shown below are sigma=6.892269139775872e-20 / sqrt(eps). 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+************************************************************************************************************************
+
+COMMENT: Transcribed from S.F. Biagi's Fortran Magboltz version 8.97 (Sept 2011). 
+         Data are based in part on the calculations of Zatsarinny and Bartschat.  See BSR database on this site.
+
+********************************************************** Ar **********************************************************
+
+ELASTIC
+Ar
+ 1.371449772656014e-04
+SPECIES: e / Ar
+PROCESS: E + Ar -> E + Ar, Elastic
+PARAM.:  m/M = 0.0000136, complete set
+COMMENT: elastic momentum transfer from Magboltz 8.97 Sept 2011.  Note that the energy resolution
+COMMENT: in the LXCat tables for energy < 1 eV is less than for the original data.
+UPDATED: 2014-10-03 16:39:59
+COLUMNS: Energy (eV) | Cross section (m2)
+-----------------------------
+0.00100000000000000	2.17952687285812e-18
+0.00114975699539774	2.03263405624940e-18
+0.00132194114846603	1.89564132384700e-18
+0.00151991108295293	1.76788144310985e-18
+0.00174752840000768	1.64873215073699e-18
+0.00200923300256505	1.53761312189128e-18
+0.00231012970008316	1.43398314368737e-18
+0.00265608778294669	1.33733747917696e-18
+0.00305385550883342	1.24720540899280e-18
+0.00351119173421513	1.16314793867754e-18
+0.00403701725859655	1.08475566053099e-18
+0.00464158883361278	1.01164675956172e-18
+0.00533669923120631	9.43465153830826e-19
+0.00613590727341317	8.79878760130320e-19
+0.00705480231071865	8.20577876548994e-19
+0.00811130830789687	7.65273674047918e-19
+0.00932603346883220	7.13696789698706e-19
+0.0107226722201032	6.65596014732823e-19
+0.0123284673944207	6.20737071011964e-19
+0.0141747416292680	5.78901469960244e-19
+0.0162975083462064	5.39885448400539e-19
+0.0187381742286038	5.03498976111891e-19
+0.0215443469003188	4.69564830274224e-19
+0.0247707635599171	4.37917732292392e-19
+0.0284803586843580	4.08403542795395e-19
+0.0327454916287773	3.80878510889950e-19
+0.0376493580679247	3.55208574011864e-19
+0.0432876128108306	3.31268704965080e-19
+0.0497702356433211	3.08942302968104e-19
+0.0572236765935022	2.88120625741863e-19
+0.0657933224657568	2.68702259872949e-19
+0.0756463327554629	2.50592626872597e-19
+0.0869749002617783	2.33703522525642e-19
+0.100000000000000	2.17952687285812e-19
+0.114975699539774	2.03263405624940e-19
+0.132194114846603	1.89564132384700e-19
+0.151991108295293	1.76788144310985e-19
+0.174752840000768	1.64873215073699e-19
+0.200923300256505	1.53761312189128e-19
+0.231012970008316	1.43398314368737e-19
+0.265608778294669	1.33733747917696e-19
+0.305385550883342	1.24720540899280e-19
+0.351119173421513	1.16314793867754e-19
+0.403701725859655	1.08475566053099e-19
+0.464158883361278	1.01164675956172e-19
+0.533669923120631	9.43465153830826e-20
+0.613590727341317	8.79878760130320e-20
+0.705480231071864	8.20577876548994e-20
+0.811130830789687	7.65273674047918e-20
+0.932603346883220	7.13696789698706e-20
+1.07226722201032	6.65596014732823e-20
+1.23284673944207	6.20737071011964e-20
+1.41747416292681	5.78901469960244e-20
+1.62975083462064	5.39885448400539e-20
+1.87381742286038	5.03498976111891e-20
+2.15443469003188	4.69564830274224e-20
+2.47707635599171	4.37917732292392e-20
+2.84803586843580	4.08403542795395e-20
+3.27454916287773	3.80878510889950e-20
+3.76493580679247	3.55208574011864e-20
+4.32876128108306	3.31268704965080e-20
+4.97702356433211	3.08942302968104e-20
+5.72236765935022	2.88120625741863e-20
+6.57933224657568	2.68702259872949e-20
+7.56463327554629	2.50592626872597e-20
+8.69749002617784	2.33703522525642e-20
+10	2.17952687285812e-20
+11.4975699539774	2.03263405624940e-20
+13.2194114846603	1.89564132384700e-20
+15.1991108295293	1.76788144310985e-20
+17.4752840000768	1.64873215073699e-20
+20.0923300256505	1.53761312189128e-20
+23.1012970008316	1.43398314368737e-20
+26.5608778294669	1.33733747917696e-20
+30.5385550883342	1.24720540899280e-20
+35.1119173421513	1.16314793867754e-20
+40.3701725859656	1.08475566053099e-20
+46.4158883361278	1.01164675956172e-20
+53.3669923120631	9.43465153830826e-21
+61.3590727341317	8.79878760130320e-21
+70.5480231071865	8.20577876548994e-21
+81.1130830789687	7.65273674047918e-21
+93.2603346883220	7.13696789698706e-21
+107.226722201032	6.65596014732823e-21
+123.284673944207	6.20737071011964e-21
+141.747416292680	5.78901469960244e-21
+162.975083462065	5.39885448400539e-21
+187.381742286039	5.03498976111891e-21
+215.443469003188	4.69564830274224e-21
+247.707635599171	4.37917732292392e-21
+284.803586843580	4.08403542795395e-21
+327.454916287773	3.80878510889950e-21
+376.493580679247	3.55208574011864e-21
+432.876128108306	3.31268704965080e-21
+497.702356433211	3.08942302968104e-21
+572.236765935022	2.88120625741863e-21
+657.933224657568	2.68702259872949e-21
+756.463327554629	2.50592626872597e-21
+869.749002617783	2.33703522525642e-21
+1000	2.17952687285812e-21
+-----------------------------
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

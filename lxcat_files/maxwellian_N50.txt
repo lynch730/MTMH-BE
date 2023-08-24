@@ -1,0 +1,114 @@
+LXCat, www.lxcat.net
+Generated on 03 Jun 2018. All rights reserved.
+
+RECOMMENDED REFERENCE FORMAT
+- Biagi database, www.lxcat.net, retrieved on June 3, 2018.
+Be aware that some databases and solvers can additionally have instructions how to reference corresponding data.
+Please check below in the headers of databases.
+
+CROSS SECTION DATA FORMAT
+In downloaded files, each collision process is defined by a block consisting of
+1st line
+Keyword in capitals indicating the type of the collision. Possible collision types are elastic, effective, excitation,
+ionization, or attachment (capital letters required, key words are case sensitive), where "elastic" is used to denote
+the elastic momentum transfer cross section and where "effective" denotes the total momentum transfer cross section (sum
+of elastic momentum transfer and total inelastic cross sections).  The latter is useful for solving the Boltzmann
+equation in the 2-term approximation.
+2nd line
+Name of the target particle species. This name is a character string, freely chosen by the user, e.g. "Ar". Optionally
+for excitation processes, the name of the corresponding excited state can be specified on the same line, separated from
+the first name either by arrow "->" (dash + greater than) or by double-head arrow "<->" (less than + dash +
+greater than), e.g. "Ar -> Ar*" and "Ar <-> Ar*", respectively. In the later case BOLSIG+ will automatically
+define the inverse superelastic process, constructing the superelastic cross-section by detailed balancing, and
+considering the indicated excited state as the target. In this case, the ratio of statistical weights must be input in
+the 3rd line (see below).  Alternatively, superelastic collisions could be defined explicitly as excitation collisions
+with a negative electron energy loss with user input cross sections and species name, "Ar*", for example.
+3rd line
+For elastic and effective collisions, the ratio of the electron mass to the target particle mass. For excitation or
+ionization collisions, the electron energy loss (nominally the threshold energy) in eV. For attachment, the 3rd line is
+missing. In case of an excitation process where an excited state has been indicated on the 2nd line using double-head
+arrow "<->", the 3rd line must specify also ratio of the statistical weights of the final state to the initial state
+as the second parameter in 3rd line this is needed by BOLSIG+ to calculate the de-excitation cross-section.
+from 4th line (optionally)
+User comments and reference information, maximum 100 lines. The only constraint on format is that these comment lines
+must not start with a number.
+Finally
+Table of the cross section as a function of energy. The table starts and ends by a line of dashes "------" (at least 5),
+and has otherwise two numbers per line: the energy in eV and the cross section in m2.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Constant collision frequency model (margeanu solution), set to nu = 1e12 1/s (1 THz) in Gas at STP (N=101325/Kb/300). shown below are sigma=6.892269139775872e-20 / sqrt(eps). 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+************************************************************************************************************************
+
+COMMENT: Transcribed from S.F. Biagi's Fortran Magboltz version 8.97 (Sept 2011). 
+         Data are based in part on the calculations of Zatsarinny and Bartschat.  See BSR database on this site.
+
+********************************************************** Ar **********************************************************
+
+ELASTIC
+Ar
+ 1.371449772656014e-04
+SPECIES: e / Ar
+PROCESS: E + Ar -> E + Ar, Elastic
+PARAM.:  m/M = 0.0000136, complete set
+COMMENT: elastic momentum transfer from Magboltz 8.97 Sept 2011.  Note that the energy resolution
+COMMENT: in the LXCat tables for energy < 1 eV is less than for the original data.
+UPDATED: 2014-10-03 16:39:59
+COLUMNS: Energy (eV) | Cross section (m2)
+-----------------------------
+0.00100000000000000	2.17952687285812e-18
+0.00132571136559011	1.89294387847399e-18
+0.00175751062485479	1.64404328832766e-18
+0.00232995181051537	1.42787029485215e-18
+0.00308884359647748	1.24012159132079e-18
+0.00409491506238043	1.07705970689673e-18
+0.00542867543932386	9.35438605649109e-19
+0.00719685673001152	8.12439068452358e-19
+0.00954095476349995	7.05612571430826e-19
+0.0126485521685530	6.12832543749611e-19
+0.0167683293681101	5.32252034451511e-19
+0.0222299648252619	4.62266945623434e-19
+0.0294705170255181	4.01484099983251e-19
+0.0390693993705462	3.48693507215778e-19
+0.0517947467923121	3.02844276970153e-19
+0.0686648845004300	2.63023699024083e-19
+0.0910298177991522	2.28439074168568e-19
+0.120679264063933	1.98401934124630e-19
+0.159985871960606	1.72314336361508e-19
+0.212095088792019	1.49656960990386e-19
+0.281176869797423	1.29978772781213e-19
+0.372759372031494	1.12888042506726e-19
+0.494171336132383	9.80445488776177e-20
+0.655128556859551	8.51528058345314e-20
+0.868511373751353	7.39561803741311e-20
+1.15139539932645	6.42317838141394e-20
+1.52641796717523	5.57860347989181e-20
+2.02358964772516	4.84508057193491e-20
+2.68269579527973	4.20800758346718e-20
+3.55648030622313	3.65470244707319e-20
+4.71486636345739	3.17415064295997e-20
+6.25055192527397	2.75678593541090e-20
+8.28642772854684	2.39429993990213e-20
+10.9854114198756	2.07947672997718e-20
+14.5634847750124	1.80604919143645e-20
+19.3069772888325	1.56857426431699e-20
+25.5954792269954	1.36232458913297e-20
+33.9322177189533	1.18319440040312e-20
+44.9843266896945	1.02761779410902e-20
+59.6362331659464	8.92497742052961e-21
+79.0604321090770	7.75144440020398e-21
+104.811313415469	6.73221762457839e-21
+138.949549437314	5.84700757751564e-21
+184.206996932672	5.07819258348268e-21
+244.205309454865	4.41046801685447e-21
+323.745754281764	3.83054163620468e-21
+429.193426012878	3.32686897867188e-21
+568.986602901829	2.88942354695708e-21
+754.312006335462	2.50949721411720e-21
+1000	2.17952687285812e-21
+-----------------------------
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

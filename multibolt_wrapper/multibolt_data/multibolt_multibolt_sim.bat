@@ -1,0 +1,28 @@
+C:\Users\lynch\Documents\GitHub\MTMH-BE\multibolt_wrapper\multibolt_data\multibolt_win64.exe ^
+ --model HD ^
+ --export_name "multibolt_sim" ^
+ --N_terms 2 ^
+ --p_Torr 7.60000322e+02 ^
+ --T_K 0 ^
+ --EN_Td 2.98277053e+01 ^
+ --Nu 8000 ^
+ --initial_eV_max 4 ^
+ --USE_ENERGY_REMAP  ^
+ --conv_err 1.00000000e-08 ^
+ --weight_f0 8.00000000e-01 ^
+ --iter_max 200 ^
+ --iter_min 0 ^
+ --remap_target_order_span 10 ^
+ --remap_grid_trial_max 20 ^
+ --multibolt_num_threads max ^
+ --export_location "C:\Users\lynch\Documents\GitHub\MTMH-BE\multibolt_wrapper\multibolt_data" ^
+ --LXCat_Xsec_fid "C:\Users\lynch\Documents\GitHub\MTMH-BE\lxcat_files\RampReid.txt" ^
+ --species "Ar" 1.00000 ^
+ --elastic_scattering Isotropic ^
+ --excitation_scattering Isotropic ^
+ --ionization_scattering Isotropic ^
+ --superelastic_scattering Isotropic ^
+ --sharing 5.00000000e-01 ^
+ --sweep_option EN_Td ^
+ --sweep_style def    29.8277  ^
+ --DONT_ENFORCE_SUM  ^
