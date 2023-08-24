@@ -1,14 +1,14 @@
 
 clear all;
-
+    
 % Load File
     load(fullfile('mtmhbe_Loureiro_benchmark.mat'));
-
+    
 % Figure Sizing
     UI_scaleup = 1.0; 
     font_size = 9 * UI_scaleup;
     single_column_width = 9.0*UI_scaleup; % cm
-
+    
 % Colors and Sizes
     cc = linspecer(3);
     linecc = [cc, repmat(0.7, 3, 1)];

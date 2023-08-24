@@ -38,21 +38,6 @@ function grid = energy_grid(grid)
         % Even Terms
         grid.L_is_even = ~mod(L, 2);
         
-    
-    %% Step N) Tiling matrices
-    
-        % % L=0 Tile
-        % im = grid.L_is_0;
-        % grid.tile.L0 = reshape((im-1)*Neps, 1, 1, []);
-        % 
-        % % Even L>0 Tile
-        % im = find(grid.L>0 & grid.L_is_even);
-        % grid.tile.Le = reshape((im-1)*Neps, 1, 1, []);
-        % 
-        % % Odd L>0 Tile
-        % im = find(grid.L>0 & ~grid.L_is_even);
-        % grid.tile.Lo = reshape((im-1)*Neps, 1, 1, []);
-        
     %% Step 2) Define Odd/Even Energy Grids
         
         % Define grid at cell walls
@@ -91,23 +76,7 @@ function grid = energy_grid(grid)
         grid.Ovol_4 = (2.0./7.0) .* (grid.OR.^3.5 - grid.OL.^3.5);
         grid.OC = grid.Ovol_2./grid.Ovol_0;
                 
-        % Finite volume of each cell, 
-        %    _0 over mass
-        %    _1 over momentum
-        %    _2 over energy
-        % grid.EO_vol_0 = reshape(grid.Evol_0.*double(grid.L_is_even) ...
-        %                 + grid.Ovol_0.*double(1.0-grid.L_is_even), [], 1);
-        % grid.EO_vol_1 = reshape(grid.Evol_1.*double(grid.L_is_even) ...
-        %                 + grid.Ovol_1.*double(1.0-grid.L_is_even), [], 1);
-        % grid.EO_vol_2 = reshape(grid.Evol_2.*double(grid.L_is_even) ...
-        %                 + grid.Ovol_2.*double(1.0-grid.L_is_even), [], 1);      
-         
         % Left and right cell energies
-        % Note that 1st even grid uses forward diff (1, 2) to estimate slope
-        %           last even grid uses extrapolated OR(end), assuming zero
-        %           value
-        %           1st Ogrid left uses zero value at e=0
-        %           last Ogrid right uses backward slope
         grid.ELC = [grid.EC(1); grid.EC(1:end-1)];
         grid.ERC = [grid.EC(2:end); grid.OR(end)];
         grid.OLC = [grid.EL(1); grid.OC(1:end-1)];
@@ -117,24 +86,18 @@ function grid = energy_grid(grid)
         % Mass Integration
         grid.E_INT_MASS = integral_matrix(grid, grid.Evol_0, grid.Evol_2, true);
         grid.O_INT_MASS = integral_matrix(grid, grid.Ovol_0, grid.Ovol_2, false);
-        % grid.EO_INT_MASS = reshape(grid.E_INT_MASS.*double(grid.L_is_even) ...
-        %                          + grid.O_INT_MASS.*double(1.0-grid.L_is_even), [], 1);
         grid.E_INT_MASS = reshape(grid.E_INT_MASS, 1, []);
         grid.O_INT_MASS = reshape(grid.O_INT_MASS, 1, []);
 
         % Momentum Integration
         grid.E_INT_MOM = integral_matrix(grid, grid.Evol_1, grid.Evol_3, true);
         grid.O_INT_MOM = integral_matrix(grid, grid.Ovol_1, grid.Ovol_3, false);
-        % grid.EO_INT_MOM = reshape(grid.E_INT_MOM.*double(grid.L_is_even) ...
-        %                          + grid.O_INT_MOM.*double(1.0-grid.L_is_even), [], 1);
         grid.E_INT_MOM = reshape(grid.E_INT_MOM, 1, []);
         grid.O_INT_MOM = reshape(grid.O_INT_MOM, 1, []);
         
         % Integration Kernel
         grid.E_INT_ENERGY = integral_matrix(grid, grid.Evol_2, grid.Evol_4, true);
         grid.O_INT_ENERGY = integral_matrix(grid, grid.Ovol_2, grid.Ovol_4, false);
-        % grid.EO_INT_ENERGY = reshape(grid.E_INT_ENERGY.*double(grid.L_is_even) ...
-        %                          + grid.O_INT_ENERGY.*double(1.0-grid.L_is_even), [], 1);
         grid.E_INT_ENERGY = reshape(grid.E_INT_ENERGY, 1, []);
         grid.O_INT_ENERGY = reshape(grid.O_INT_ENERGY, 1, []);
 
