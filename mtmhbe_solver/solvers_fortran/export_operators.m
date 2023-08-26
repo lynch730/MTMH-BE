@@ -58,14 +58,14 @@ function export_operators(M, paths, fname)
     xsec_is_ionization = int32(find(M.xsec.is_ionization(:)));
 
     % Copy Y Matrix
-%     jac_Iu = int32(M.Iu(:));
-%     jac_Ju = int32(M.Ju(:)); 
-    AA = sparse(M.Iu, M.Ju, ones(size(M.Iu)), M.N, M.N);
+%     jac_Iu = int32(M.m(:));
+%     jac_Ju = int32(M.n(:)); 
+    AA = sparse(M.m, M.n, ones(size(M.m)), M.N, M.N);
     [jac_Iu, jac_Ju, ~, sid] = convert_sparse_format(AA);
     
     % if QSS, 
     YY = M.Y(sid, :);
-    Iu = M.Iu(sid);
+    Iu = M.m(sid);
     [ii, jj] = find(YY);
     kk = find(Iu(ii)==1 & jj~=M.zin.zid.mass_int);
     ind_bc_zero = sub2ind(size(YY), ii(kk), jj(kk));
@@ -79,9 +79,9 @@ function export_operators(M, paths, fname)
     
     % M.Y(M.ind_bc_zero) = 0.0;
     % beta = ones(size(M.Y, 2), 1);
-    % A1 = sparse(M.Iu, M.Ju, M.Y*beta, N, N);
+    % A1 = sparse(M.m, M.n, M.Y*beta, N, N);
     % A2 = decomposition(A1);
-    % A = sparse(M.Iu, M.Ju, M.Y*beta*0, N, N);
+    % A = sparse(M.m, M.n, M.Y*beta*0, N, N);
     % rhs = A * ones(M.N, 1);
     % rhs(1) = 1.0;
     % b = A2\rhs;

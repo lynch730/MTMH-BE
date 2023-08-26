@@ -1,0 +1,7 @@
+#!/bin/bash
+#sbatch laporta_multibolt_run_linear_634.sh
+#sbatch laporta_multibolt_run_auto_528.sh
+sbatch laporta_multibolt_run_auto_100.sh
+sbatch laporta_multibolt_run_auto_800.sh
+sbatch laporta_multibolt_run_linear_100.sh
+sbatch laporta_multibolt_run_linear_800.sh

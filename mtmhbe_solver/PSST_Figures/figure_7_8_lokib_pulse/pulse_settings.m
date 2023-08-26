@@ -12,14 +12,12 @@ function bd = pulse_settings
         
     %% Grid Settings
         grid.NL = 2;            % Integer, # of Legendre Terms, lmax = N_l-1
-        grid.NK = 2;            % integer, # Nepsmber of Fourier Terms
-        grid.Neps = 200;          % Integer, Nepsmber of energy bins
+        grid.NK = 2;            % integer, # Number of Fourier Terms
+        grid.Neps = 200;          % Integer, Number of energy bins
         grid.eV_max = 250;      % Float, maximum eV to grid data to
         grid.eV_min = 1e-2;     % Float, minimum eV to grid data to
         grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear
-        grid.FL_order = 5;      % Integer, selects ordering of L/K/R-I terms in
-        grid.eV_bins_R = [0.0]; % RHS of bins, N+1 bins created
-        grid.use_gpu = false;
+        grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms in
         
     %% Solver Options
         
@@ -48,20 +46,13 @@ function bd = pulse_settings
     %% Gas Settings
         const = boltz_constants;
         gas.Te_0 =  300 * const.KB / const.QE;    % eV
-        % gas.ne_N = 0.0; 
         gas.Tgas = 300.0; 
         gas.Texc = 300.0;
         gas.press_Pa = 101325.0;
-        gas.spec_frac = [1.0]; % Mole Fraction
+        gas.spec_frac = 1.0; % Mole Fraction
         
     %% E-Field Settings
-%         Nref = gas.press_Pa / (300.0 * const.KB);
-        % WN = 1e-18; %1.777e-16;
-        % omega = WN .* Nref;
-        % field.omega = omega; %10e9 * 2 * pi; % Hz to rad/s
         field.omega = 2.0 * pi * 2.45e9;
-%         nu = 3e-14 * Nref;
-%         Eff = (1.0+(field.omega/nu)^2.0)^-0.5;
         EN_rms_max = 50*sqrt(2); % Td
 
         % EN_rms_max = 100;
@@ -70,7 +61,7 @@ function bd = pulse_settings
     %% Time Series Settings
         time.tmin = 1.0e-12;
         time.tmax = 1.0e-5;
-        time.Nt = 2000; % Nepsmber of steps to recover
+        time.Nt = 2000; % Number of steps to recover
         time.array = 10.0.^linspace(log10(time.tmin), log10(time.tmax), time.Nt);
         time.array = [0, time.array];
         time.Nt = time.Nt + 1;

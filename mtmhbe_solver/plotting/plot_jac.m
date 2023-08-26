@@ -7,7 +7,7 @@ function p = plot_jac(M, zid, ccolor, msize, xyshift)
     end
     m = M.grid.N;
     n = m;
-    A = sparse(M.Iu, M.Ju, M.Cpz(:,zid)*M.b_z(zid), n, n);
+    A = sparse(M.m, M.n, M.Cpz(:,zid)*M.b_z(zid), n, n);
     pos = get(gca,'position');
     if isempty(msize)
         msize = 0.9*max(4,min(14,round(6*min(pos(3:4))/max(m+1,n+1))));

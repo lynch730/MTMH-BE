@@ -10,13 +10,14 @@ tmax = [10e-12, 25e-12];
 Ncase = numel(P_case);
 
 % Field Cases
-EN_array = sqrt(2) .* [400.0, 700.0, 1000.0];
+EN_array = sqrt(2) .* [1000.0];
+% EN_array = sqrt(2) .* [400.0, 700.0, 1000.0];
 N_EN = numel(EN_array);
 sol = cell(Ncase, N_EN);
 g = cell(Ncase, N_EN);
 
 %% Main Loop
-for k = 1:Ncase
+for k = 2:2
     
     % Set Pressure and maximum time
     bd.gas.press_Pa = P_case(k);
@@ -24,7 +25,7 @@ for k = 1:Ncase
     
     % Set Time
     Nwaves =  round(bd.time.tmax * bd.field.omega / 2.0 /pi);
-    bd.time.Nt = Nwaves*bd.time.ntpw; % Nepsmber of steps to recover
+    bd.time.Nt = Nwaves*bd.time.ntpw; % Number of steps to recover
     
     % Set xsec
     if k==1
@@ -52,6 +53,9 @@ for k = 1:Ncase
         % Run Time-Dependent
         [sol{k,j}, g{k,j}] = solver_main(bd.gas, bd.field, bd.time, bd.settings, M);
         
+        sol{k,j}.g = g{k,j};
+        animate_step_response(M, sol{k,j}, 'isotropic', sol{k,j}.time, bd.field, true)
+        
         % Clear eedf
         M = rmfield(M, 'eedf0');
         
@@ -59,7 +63,7 @@ for k = 1:Ncase
 end
 
 %% Save
-save(fullfile('PSST_Figures','figure_6_stephens_step_response', 'mtmhbe_bench_stephens_step_response.mat'))
+% save(fullfile('PSST_Figures','figure_6_stephens_step_response', 'mtmhbe_bench_stephens_step_response.mat'))
 
 
 
@@ -77,14 +81,12 @@ function bd = stephens_settings
         
     %% Grid Settings
         grid.NL = 8;            % Integer, # of Legendre Terms, lmax = N_l-1
-        grid.NK = 12;            % integer, # Nepsmber of Fourier Terms
-        grid.Neps = 200;          % Integer, Nepsmber of energy bins
+        grid.NK = 12;            % integer, # Number of Fourier Terms
+        grid.Neps = 200;          % Integer, Number of energy bins
         grid.eV_max = 1000;      % Float, maximum eV to grid data to
         grid.eV_min = 1e-2;     % Float, minimum eV to grid data to
         grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear
         grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms in
-        grid.eV_bins_R = [0.01]; % RHS of bins, N+1 bins created
-        grid.use_gpu = false;
         
     %% Solution Type Settings
         settings.bolsig_quick_run = false;
@@ -119,7 +121,7 @@ function bd = stephens_settings
         field.omega = 110e9 * 2 * pi; % Hz to rad/s
         
     %% Time Settings
-        time.ntpw = 256;
+        time.ntpw = 500;
 
     %% Package variables for bolsig+
         bd.paths = paths;

@@ -16,7 +16,7 @@ function [iplot, Np] = eedf_index(M, pcase)
         otherwise
             iplot = 1:g.NLK;
     end
-
+    
     Np = numel(iplot); % number of distros to plot
-
+    
 end

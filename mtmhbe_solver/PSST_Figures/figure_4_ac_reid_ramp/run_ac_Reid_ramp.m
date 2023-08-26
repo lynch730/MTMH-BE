@@ -8,21 +8,18 @@ paths = add_boltz_paths_new;
 % % Cross Section Mixture
 xsec.files = {'RampReid'};
 xsec.spec_names = {'Ar'};
-xsec.spec_MM = 4.0; 
-xsec.extrap = true;        % Boolean, whether to extrapolate OOB cross sections or make zero 
 xsec.ISM = 0;
 xsec.log_interp_flag = true;
+xsec.extrap = true;     % Boolean, whether to extrapolate OOB values
 
 % Grid Settings
-grid.NL = 4;            % Integer, # of Legendre Terms, lmax = N_l-1
-grid.NK = 50;            % integer, # Nepsmber of Fourier Terms
-grid.Neps = 400;          % Integer, Nepsmber of energy bins
-grid.eV_max = 500;      % Float, maximum eV to grid data to
+grid.NL = 4;            % Integer, # of Legendre Terms
+grid.NK = 50;           % integer, # Numver of Fourier Terms
+grid.Neps = 400;        % Integer, Number of energy bins
 grid.eV_min = 1e-2;     % Float, minimum eV to grid data to
-grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear
-grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms in
-grid.eV_bins_R = [0.01]; % RHS of bins, N+1 bins created
-grid.use_gpu = false;
+grid.eV_max = 500;      % Float, maximum eV to grid data to
+grid.grid_case = 'log'; % Log or linear grid or custom (input EC grid)
+grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms, use 1 or 2
 
 % create MAtrix
 M = matrix_main(xsec, grid, paths);

@@ -17,23 +17,7 @@ function phandles = plot_eedf(M, sol, pcase, time_index)
         [iplot, Np] = eedf_index(M, pcase);
         
         % Colors
-        % cc = linspecer(Np);
-        cc2_ref = (linspecer(M.grid.NL));
-        lspec_ref = {'-', '--', ':', '-.', '-', '--', ':', '-.', '-', '--', ':', '-.'};
-        linew_ref = [2, 2];
-
-        % Colors by Anisotropy
-        cc = zeros(M.grid.NLK, 3);
-        linew = zeros(M.grid.NLK, 1);
-        lspec = cell(M.grid.NLK, 1);
-        for kk = 1:M.grid.NLK
-            cc(kk,1:3) = cc2_ref(M.grid.L(kk)+1,:);
-            linew(kk) = linew_ref(M.grid.R(kk)+1);
-            lspec{kk} = lspec_ref{M.grid.K(kk)+1};
-        end
-        
-        % Linespec
-        
+        cc = linspecer(Np);
     
         g = M.grid;
         
@@ -43,19 +27,17 @@ function phandles = plot_eedf(M, sol, pcase, time_index)
         set(gca,'XScale', 'Log')
         set(gca,'YScale', 'Log')
         xlim([g.EC(1)*0.5 g.OC(end)*2])
-    %     ylim([p.tol.abs 1e4])
         ylim([1e-20 1e4])
-        xlabel('Energy ($$eV$$)', 'Interpreter', 'latex')
-        ylabel('EEDF ($$eV^{-3/2}$$)', 'Interpreter', 'latex')
+        xlabel('Energy ($\mathrm{eV}$)', 'Interpreter', 'latex')
+        ylabel({'$|f_{\ell k r}(\varepsilon)|$','($\mathrm{eV}^{-3/2}$)'}, ...
+               'Rotation',0, 'Interpreter', 'latex')
         title('Time-Dependent EEDF Pulse', 'Interpreter', 'latex')
-    
+        
         % Plot all distros
         phandles = gobjects(Np+6, 1);
         labels = cell(Np, 1);
-        cnt = 0;
-        for j = Np:-1:1
-            cnt = cnt+1;
-
+        for j = 1:Np
+            
             % Index to distro
             jj = iplot(j);
             L = g.L(jj);
@@ -67,25 +49,24 @@ function phandles = plot_eedf(M, sol, pcase, time_index)
             if mod(L, 2) == 0
                 energy = g.EC;
             end
-            % 
-            % % Select line type from L value
-            % lspec = '-';
-            % if L==1
-            %     lspec = '--';
-            % elseif L==2
-            %     lspec = ':';
-            % elseif L==3
-            %     lspec = '-.';
-            % end
+            
+            % Select line type from L value
+            lspec = '-';
+            if L==1
+                lspec = '--';
+            elseif L==2
+                lspec = ':';
+            elseif L==3
+                lspec = '-.';
+            end
     
             % Plot with empty y data
             phandles(j) = plot(energy, nan(size(energy)),...
-                              'Color', [cc(jj, :), 0.7], ...
-                              'LineStyle', lspec{jj}, ...
-                              'LineWidth', linew(jj));
-            
+                              'Color', [cc(j, :), 0.7], ...
+                              'LineStyle', lspec, 'LineWidth', 2.1);
+    
             % Label
-            labels{cnt} = ['$$\ell{kr}=', ...
+            labels{j} = ['$$\ell{kr}=', ...
                          num2str(L, '%i'), ...
                          num2str(K, '%i'), ...
                          num2str(R, '%i'), '$$'];

@@ -143,7 +143,6 @@ function bdata = run_bolsig_custom_sweep(b, Texc, i)
         
     % Set new species names
     b.xsec.spec_names = b.spec.names(1:i);
-    b.xsec.spec_MM = b.spec.mm(1:i);
 
     b.gas.Texc = Texc;
 

@@ -24,13 +24,11 @@ xsec.log_interp_flag = false;
 
 % Grid Settings
 grid.NL = 2;            % Integer, # of Legendre Terms, lmax = N_l-1
-grid.NK = 2;            % integer, # Nepsmber of Fourier Terms
+grid.NK = 2;            % integer, # Number of Fourier Terms
 grid.eV_max = 4.0;      % Float, maximum eV to grid data to
 grid.eV_min = 1e-3;     % Float, minimum eV to grid data to
 grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear
 grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms in
-grid.eV_bins_R = [0.01]; % RHS of bins, N+1 bins created
-grid.use_gpu = 0;
 
 %% Solver Options
 

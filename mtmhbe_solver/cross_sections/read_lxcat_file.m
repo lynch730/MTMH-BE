@@ -106,7 +106,7 @@ function block_text = cut_into_raw_text_blocks(file_lines)
     % given line
     process_type_str = {'MOMENTUM', 'ELASTIC', 'EXCITATION', 'IONIZATION', 'ATTACHMENT'};
     block_start = find(startsWith(strtrim(file_lines), process_type_str)); 
-    assert(numel(block_start)==Ns, 'Nepsmber of header strings must match number of dash lines divided by 2')
+    assert(numel(block_start)==Ns, 'Number of header strings must match number of dash lines divided by 2')
     
     % Loop process and seperate
     for i = 1:Ns

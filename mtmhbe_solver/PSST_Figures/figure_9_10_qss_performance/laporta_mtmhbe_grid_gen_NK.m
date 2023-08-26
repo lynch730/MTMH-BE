@@ -9,7 +9,6 @@ function laporta_mtmhbe_grid_gen_NK(varargin)
     dname = fullfile('mat_files_tmp');
     grid_case = 'log';
     ism = 2;
-    use_gpu = false;
     N_eps_array = [100, 800];
     i_array = [1, 2, 3, 4, 6, 7, 9, 11, 13, 16, 20, 25, 31, 38, 48, 59];
 
@@ -48,11 +47,7 @@ function laporta_mtmhbe_grid_gen_NK(varargin)
     % GPU
     if nargin >= 4
         val = varargin{4};
-        if ~isempty(val)
-            use_gpu = val; % Boolean, 1=log-spaced, 0 = linear
-        end
     end
-    md.grid.use_gpu = use_gpu; % Boolean, 1=log-spaced, 0 = linear
     
     % Grid Size
     if nargin >= 5
@@ -92,7 +87,6 @@ function laporta_mtmhbe_grid_gen_NK(varargin)
     
             % Set new species names
             md.xsec.spec_names = md.spec.names(1:iloc);
-            md.xsec.spec_MM = md.spec.mm(1:iloc);
             
             % Create Matrix
             M = matrix_main(md.xsec, md.grid, md.paths);

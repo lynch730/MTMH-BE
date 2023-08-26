@@ -13,14 +13,12 @@ paths = add_boltz_paths_new;
     
     % Grid Settings
     grid.NL = 4;            % Integer, # of Legendre Terms, lmax = N_l-1
-    grid.NK = 20;            % integer, # Nepsmber of Fourier Terms
-    grid.Neps = 400;          % Integer, Nepsmber of energy bins
+    grid.NK = 20;            % integer, # Number of Fourier Terms
+    grid.Neps = 400;          % Integer, Number of energy bins
     grid.eV_max = 1000;      % Float, maximum eV to grid data to
     grid.eV_min = 1e-2;     % Float, minimum eV to grid data to
     grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear
     grid.FL_order = 2;      % Integer, selects ordering of L/K/R-I terms in
-    grid.eV_bins_R = []; % RHS of bins, N+1 bins created
-    grid.use_gpu = false;
     
     % Solver Options
     

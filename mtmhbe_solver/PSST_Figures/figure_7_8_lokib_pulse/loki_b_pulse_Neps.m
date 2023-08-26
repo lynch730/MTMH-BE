@@ -9,7 +9,7 @@ bd.settings.ode_solver = 1;
 
 time.tmin = 1e-12;
 time.tmax = 1.0e-5; % At max of pulse
-time.Nt = 1000; % Nepsmber of steps to recover
+time.Nt = 1000; % Number of steps to recover
 time.array = 10.0.^linspace(log10(time.tmin), log10(time.tmax), time.Nt);
 bd.time = time;
 

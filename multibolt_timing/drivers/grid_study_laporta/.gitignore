@@ -1,0 +1,8 @@
+CMakeCache.txt
+laporta_run
+*.out
+cmake_install.cmake
+CMakeFiles/
+
+grid_study_laporta_linear
+grid_study_laporta_auto

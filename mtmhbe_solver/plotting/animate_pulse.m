@@ -14,28 +14,35 @@ function animate_pulse(M, sol, pcase, time, field, save_video)
         open(myvid);
     end
 
-    ylim([1e-12 100])
+    ylim([1e-15 100])
     xlim([4e-3 500])
     ax = gca;
     ax.MinorGridLineStyle = 'none';
     ax.MinorGridColor = [0.7 0.7 0.7];
+    ax.FontSize = 24;
 
     tl = title(sprintf('Time Step: %i', 0));
     tt = time.array;
     EN = field.EN_TD(tt);
     ax2 = axes;
+    ax2.FontSize = 24;
     ax2.Units = 'normalized';
     ax2.Position = [0.73 0.6 0.21 0.3];
-    plot(tt*1e9, EN, '-k', 'LineWidth', 1.5);
-    xlabel('Time (ns)')
+    ax2.XScale = 'log';
+    plot(tt, EN, '-k', 'LineWidth', 1.5);
+    xlabel('Time (s)')
     ylabel('E/N')
-    p2 = plot(tt(1)*1e9, EN(1), '.r', 'MarkerSize', 15);
+    xlim([1e-12 1e-5])
+    ylim([0 35])
+    p2 = plot(tt(1), EN(1), '.r', 'MarkerSize', 15);
     
     % Time-series plot
     for i = 1:time.Nt
         pset = update_plot(M, pcase, pset, i, sol);
-        tl.String = sprintf('Time Step: %i', i);
-        p2.XData = tt(i)*1e9;
+
+        a = time.array(i);
+        tl.String = sprintf('Time = $%4.2f \\times 10^{%i}$ s', [a/(10.0.^floor(log10(a))), floor(log10(a))]);
+        p2.XData = tt(i);
         p2.YData = EN(i);
         if save_video
             writeVideo(myvid, getframe(gcf));
@@ -64,11 +71,6 @@ function pset = initialize_all_plots(M, sol, pcase, time, field)
 
     % Draw all
     drawnow
-%     
-%     % Copy handles
-%     pset.Np = Np;
-%     pset.twave = twave;
-%     pset.EN_DC = EN_DC;
 
 end
 

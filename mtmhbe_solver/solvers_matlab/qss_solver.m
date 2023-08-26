@@ -1,14 +1,11 @@
 function [sol, p, X, JacS] = qss_solver(gas, field, settings, M, JacS)
     
     % Clear QSS components 
-    % NOTE: This is removed from timing because it should be run priot to
-    % qss run, it's only kept in this subroutine to maintain consistency
-    % with functions that call qss solution.
-    if ~M.grid.use_gpu
-        M.Cpz(M.ind_bc_zero) = 0.0;
-    else
-        error('Cannot use GPU for QSS solution right now')
-    end
+    % NOTE: This is removed from timing loop because it need only be
+    % performed once. It is not done in matrix_main to maintain code
+    % consistency. Future work can move this line out. In any case, doesn't
+    % cost much. 
+    M.Cpz(M.ind_bc_zero) = 0.0;
     
     % Start Timers
     wtime.rhs.b_z = 0.0;
@@ -23,14 +20,15 @@ function [sol, p, X, JacS] = qss_solver(gas, field, settings, M, JacS)
     
     % Compute Gas State
     gas.N_z = species_fractions(gas, M.zin, M.const);
-
+    
     % Empty X matrix
     X = zeros(M.grid.N, 1);
     b_z = zeros(M.zin.Nz, 1);
     
     % Inital solution (Maxwellian)
     X(:, 1) = initial_eedf(gas, field, M);
-
+    
+    % Store parameters - This should be in sol in future versions. 
     p.gas = gas;
     p.EN_TD = field.EN_TD;
     p.omega = field.omega;
@@ -45,19 +43,23 @@ function [sol, p, X, JacS] = qss_solver(gas, field, settings, M, JacS)
         JacS = [];
     end
     if isempty(JacS)
+
+        % Compute using first x solution
         [JacS, jtime] = new_jacobian_decomp(X(:, 1), p, M, b_z);
+
+        % Add to timer
         wtime.jac.b_z = wtime.jac.b_z + jtime.b_z;
         wtime.jac.gen  = wtime.jac.gen  + jtime.gen;
         wtime.jac.LU   = wtime.jac.LU   + jtime.LU;
         wtime.jac.N = wtime.jac.N + 1;
+
     end
 
-    %% Loop over i>1
     % Reset iteration counter & convergence flag
     is_converged = false;
     iter = 0;
     iter_total = 0;
-
+    
     %% Main Newton Iteration Loop
     while ~is_converged && iter_total< p.settings.max_jac_iter
 
@@ -173,6 +175,7 @@ end
 %% Inital EEDF
 function X = initial_eedf(gas, field, M)
     
+    % If eedf0 is provided from earlier calculation, return it. 
     if isfield(M, 'eedf0')
         if ~isempty(M.eedf0)
             X = M.eedf0;

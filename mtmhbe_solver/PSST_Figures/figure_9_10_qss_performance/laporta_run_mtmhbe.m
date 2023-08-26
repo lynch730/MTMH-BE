@@ -9,7 +9,6 @@ function laporta_run_mtmhbe(varargin)
     dname = fullfile('performance', base_name);
     grid_case = 'linear';
     ism = 2;
-    use_gpu = false;
     N_eps_array = [582];
     % i_array = [1, 2, 3, 4, 6, 7, 9, 11, 13, 16, 20, 25, 31, 38, 48, 59];
     i_array = [59];
@@ -50,11 +49,7 @@ function laporta_run_mtmhbe(varargin)
     % GPU
     if nargin >= 4
         val = varargin{4};
-        if ~isempty(val)
-            use_gpu = val; % Boolean, 1=log-spaced, 0 = linear
-        end
     end
-    md.grid.use_gpu = use_gpu; % Boolean, 1=log-spaced, 0 = linear
     
     % Grid Size
     if nargin >= 5
@@ -112,7 +107,7 @@ function laporta_run_mtmhbe(varargin)
             [sol{i,k}, M] = run_mtmhbe_custom_sweep(md, md.Texc, iloc);
             N_zin(i) = M.Nz;
             N_MY(i,k) = nnz(M.Y);
-            N_MYx(i,k) = size(M.Y, 1); % Nepsmber of rows in Y, same as nnz(Jacobian)
+            N_MYx(i,k) = size(M.Y, 1); % Number of rows in Y, same as nnz(Jacobian)
             
             % Process case sweep averages
             wtime = zeros(numel(sol{i,k}), 1);
@@ -152,9 +147,6 @@ function laporta_run_mtmhbe(varargin)
     % Assmeble Filename
     foutname = [base_name, '_mtmhbe_ET', sprintf('%i', md.xsec.ensemble_type)];
     foutname = [foutname, '_', lower(md.grid.grid_case)];
-    if md.grid.use_gpu
-        foutname = [foutname, '_gpu'];
-    end
     foutname = [foutname, '.mat'];
 
     % Save
@@ -167,16 +159,9 @@ function [sol, M] = run_mtmhbe_custom_sweep(b, Texc, i)
 
     % Set new species names
     b.xsec.spec_names = b.spec.names(1:i);
-    b.xsec.spec_MM = b.spec.mm(1:i);
     
     % Create Matrix
     M = matrix_main(b.xsec, b.grid, b.paths);
-    % M.Y(M.ind_bc_zero) = 0.0;
-    % J = sparse(M.Iu, M.Ju, sum(M.Y, 2));
-    % frac = nnz(J(1:M.grid.Neps, 1:M.grid.Neps))./numel(J(1:M.grid.Neps, 1:M.grid.Neps));
-    % fprintf('\n %i %i %e %e %i',[i, M.Nz_act, M.stacked_frac, frac, size(M.Y, 1)]);
-    % sol = {};
-    % return
 
     % Store Field
     EN_TD = b.field.EN_TD;
@@ -194,9 +179,6 @@ function [sol, M] = run_mtmhbe_custom_sweep(b, Texc, i)
         b.field.EN_TD = EN_TD ./ 300.0 .* b.gas.Tgas;
         [sol{j}, ~, ~, JacS] = qss_solver(b.gas, b.field, b.settings, M, JacS);
         M.eedf0 = sol{j}.X(:);
-        % fprintf('\n %i/%i, time=%8.6f, iter=%i, neg-eedf=%i', ...
-        %          [j, numel(Texc), sol{j}.wtime.total, ...
-        %          sol{j}.wtime.iterations, sol{j}.wtime.negative_eedf_flag]);
     end
 
 end

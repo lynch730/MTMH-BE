@@ -327,12 +327,12 @@ Texcdot_mwsize = 15;
     an2.FaceColor = Texc3k_orange;
     
     % Negative
-    sign_neg = custom_sign([0.82 0.73 0.055 0.045], '$(-)$', font_size);
-    sign_pos = custom_sign([0.57 0.69 0.055 0.045], '$(+)$', font_size);
+    sign_neg = custom_sign([0.825 0.755 0.055 0.045], '$(-)$', font_size);
+    sign_pos = custom_sign([0.57 0.72 0.055 0.045], '$(+)$', font_size);
 
 %% Print Both Figures to File
-    % export_fig(f1,'figures/bolsig_a', '-png', '-nocrop', '-r600', '-painters', '-q101')
-    % export_fig(f2,'figures/bolsig_b', '-png', '-nocrop', '-r600', '-painters', '-q101')
+    export_fig(f1,'figures/bolsig_a', '-png', '-nocrop', '-r600', '-painters', '-q101')
+    export_fig(f2,'figures/bolsig_b', '-png', '-nocrop', '-r600', '-painters', '-q101')
 
 
 %% Custom Arrows

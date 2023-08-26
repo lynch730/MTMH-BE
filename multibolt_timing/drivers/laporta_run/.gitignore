@@ -1,0 +1,16 @@
+CMakeCache.txt
+laporta_run
+
+data/*
+
+laporta_run_100_auto
+laporta_run_100_linear
+laporta_run_528
+laporta_run_537
+laporta_run_631
+laporta_run_634
+laporta_run_800_auto
+laporta_run_800_linear
+
+*.txt
+*.out

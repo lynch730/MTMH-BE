@@ -36,17 +36,23 @@ function M = matrix_main(xsec, grid, paths)
     M.Z = M.Z(k);
     M.V = M.V(k);
     
-    % QSS Cpz
-    [IJ, ~, ic] = unique([M.J, M.I], 'rows', 'sorted');
-    IJ = cast(IJ, M.int_type);
-    ic = cast(ic, M.int_type);
-    M.Iu = IJ(:, 2); % unique I in [I, J]
-    M.Ju = IJ(:, 1); % unique J in [I, J]
-    M.Cpz = sparse(ic, M.Z, M.V, size(IJ, 1), zin.Nz);
+    %% Assemble Cpz Matrix from
+    
+    % Find unique Jacobian indices p from 
+    [p, ~, p_sort] = unique([M.J, M.I], 'rows', 'sorted');
+
+    % Convert to selected variable type (allows reducing size)
+    p = cast(p, M.int_type);
+    p_sort = cast(p_sort, M.int_type);
+    
+    % Get the associated m, n locations associated with p
+    M.m = p(:, 2); 
+    M.n = p(:, 1);
+    M.Cpz = sparse(p_sort, M.Z, M.V, size(p, 1), zin.Nz);
     
     % Get inidices of indices to zero in QSS Case
     [ii, jj] = find(M.Cpz);
-    kk = find(M.Iu(ii)==1 & jj~=zin.mass_int);
+    kk = find(M.m(ii)==1 & jj~=zin.mass_int);
     M.ind_bc_zero = sub2ind(size(M.Cpz), ii(kk), jj(kk));
     
     %% Optional: get statistics on C_pz co-location
@@ -69,7 +75,7 @@ function M = matrix_main(xsec, grid, paths)
         M.stacked_frac = (Nnz_raw-M.Nz_act)./Nnz_raw;
     
         % Example Jac to compare
-        ZZZ = sparse(M.Iu, M.Ju, sum(YY, 2), M.N, M.N);
+        ZZZ = sparse(M.m, M.n, sum(YY, 2), M.N, M.N);
     
         M.jac_entries_k = nnz(ZZZ) / 1000.0;
         M.jac_coll_den  = nnz(ZZZ(1:grid.Neps, 1:grid.Neps))/(double(grid.Neps)^2) * 100; % Percentage

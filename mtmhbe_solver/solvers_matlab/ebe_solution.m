@@ -12,9 +12,9 @@ function [fdot, b_z, bz_wtime] = ebe_solution(t, X, p, M, return_Jacobian, b_z_s
     
     % Create either dFdt or Jacobian based on flag
     if return_Jacobian
-        fdot = sparse(M.Iu, M.Ju, M.Cpz*b_z2, M.grid.N, M.grid.N);
+        fdot = sparse(M.m, M.n, M.Cpz*b_z2, M.grid.N, M.grid.N);
     else % fdot
-        fdot = sparse(M.Iu, M.Ju, M.Cpz*b_z2, M.grid.N, M.grid.N) * X(:);
+        fdot = sparse(M.m, M.n, M.Cpz*b_z2, M.grid.N, M.grid.N) * X(:);
     end
     
 end

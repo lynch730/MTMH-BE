@@ -207,9 +207,8 @@ end
         md1.grid.Neps = Neps;
         iloc = 1;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alog1 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alog1 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alog1.mat'), 'Alog1');
     else
         load(fullfile(dname,'Alog1.mat'), 'Alog1');
@@ -218,9 +217,8 @@ end
     if regenerate_jacobian
         iloc = 10;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alog2 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alog2 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alog2.mat'), 'Alog2');
     else
         load(fullfile(dname,'Alog2.mat'), 'Alog2');
@@ -229,9 +227,8 @@ end
     if regenerate_jacobian
         iloc = 59;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alog3 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alog3 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alog3.mat'), 'Alog3');
     else
         load(fullfile(dname,'Alog3.mat'), 'Alog3');
@@ -265,31 +262,28 @@ end
         md1.grid.grid_case = 'linear';
         iloc = 1;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alin1 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alin1 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alin1.mat'), 'Alin1');
     else
         load(fullfile(dname,'Alin1.mat'), 'Alin1');
     end
-
+    
     if regenerate_jacobian
         iloc = 10;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alin2 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alin2 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alin2.mat'), 'Alin2');
     else
         load(fullfile(dname,'Alin2.mat'), 'Alin2');
     end
-
+    
     if regenerate_jacobian
         iloc = 59;
         md1.xsec.spec_names = md1.spec.names(1:iloc);
-        md1.xsec.spec_MM = md1.spec.mm(1:iloc);
         M = matrix_main(md1.xsec, md1.grid, md1.paths);
-        Alin3 = sparse(M.Iu, M.Ju, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
+        Alin3 = sparse(M.m, M.n, M.Y*ones(size(M.Y, 2), 1), M.N, M.N);
         save(fullfile(dname,'Alin3.mat'), 'Alin3');
     else
         load(fullfile(dname,'Alin3.mat'), 'Alin3');

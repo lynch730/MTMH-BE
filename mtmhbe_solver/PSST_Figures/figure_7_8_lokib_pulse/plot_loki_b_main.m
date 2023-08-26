@@ -423,8 +423,17 @@ clc;
     fort_nk2_arrow.HeadWidth = 3;
     fort_nk2_arrow.HeadLength = fort_nk2_arrow.HeadWidth;
     fort_nk2_arrow.HeadStyle = 'plain';
-
-
+    
+    % Loki-B Text Label
+    loki_b_txt = annotation(f2,'textbox');
+    loki_b_txt.Position = [0.83 0.28 0.068 0.057];
+    loki_b_txt.Color = purple;
+    loki_b_txt.String = {'LoKI-B'};
+    loki_b_txt.Interpreter = 'latex';
+    loki_b_txt.HorizontalAlignment = 'center';
+    loki_b_txt.FontSize = font_size;
+    loki_b_txt.FitBoxToText = 'off';
+    
 %% Subplot 4, Wall Time
     axb4 = axes;
     axb4.Position = axb3.Position;
@@ -500,8 +509,8 @@ clc;
     
 %% Save Figure
     drawnow
-    % export_fig(f1, 'figures/loki-b_a', '-png', '-nocrop', '-r600', '-painters', '-q101')
-    % export_fig(f2, 'figures/loki-b_b', '-png', '-nocrop', '-r600', '-painters', '-q101')
+    export_fig(f1, 'figures/loki-b_a', '-png', '-nocrop', '-r600', '-painters', '-q101')
+    export_fig(f2, 'figures/loki-b_b', '-png', '-nocrop', '-r600', '-painters', '-q101')
 
 
 % Plot trend line

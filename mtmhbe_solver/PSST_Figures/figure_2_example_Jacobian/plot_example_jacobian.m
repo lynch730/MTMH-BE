@@ -13,15 +13,14 @@ single_column_width = 9.0*UI_scaleup; % cm
     % Create matrix
     xsec.files = {'Biagi_N2_rev', 'Biagi_O2_rev'};
     xsec.spec_names = {'N2', 'O2'};
-    xsec.spec_MM = [28.0, 32.0]; 
     xsec.extrap = true;        % Boolean, whether to extrapolate OOB cross sections or make zero 
     xsec.ISM = 1;
     xsec.log_interp_flag = false;
     
     % Grid Settings
     grid.NL = 4;            % Integer, # of Legendre Terms, lmax = N_l-1
-    grid.NK = 4;            % integer, # Nepsmber of Fourier Terms
-    grid.Neps = 200;          % Integer, Nepsmber of energy bins
+    grid.NK = 4;            % integer, # Number of Fourier Terms
+    grid.Neps = 200;          % Integer, Number of energy bins
     grid.eV_max = 100;      % Float, maximum eV to grid data to
     grid.eV_min = 1e-3;     % Float, minimum eV to grid data to
     grid.grid_case = 'log'; % Boolean, 1=log-spaced, 0 = linear

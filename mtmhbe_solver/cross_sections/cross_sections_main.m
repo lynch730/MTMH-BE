@@ -4,7 +4,7 @@ function xsec = cross_sections_main(xsec, paths)
     xsec.Nfiles = numel(xsec.files);
     assert(numel(unique(xsec.files))==xsec.Nfiles, 'Non-unique files detected!')
     
-    % Nepsmber of user defined species 
+    % Number of user defined species 
     xsec.spec_names = strtrim(xsec.spec_names);
     xsec.Neps = numel(xsec.spec_names);
     assert(numel(unique(xsec.spec_names))==xsec.Neps, 'Non-unique species detected!')

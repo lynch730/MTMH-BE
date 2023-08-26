@@ -34,7 +34,7 @@ if plot_run
     figure(1); %clf;
     set(gca, 'XScale', 'Log')
     set(gca, 'YScale', 'Log')
-    xlabel('Nepsmber of Vibrational States', 'interpreter', 'latex')
+    xlabel('Number of Vibrational States', 'interpreter', 'latex')
     ylabel('Average Wall Time per Solution (sec)', 'interpreter', 'latex')
     title('Multibolt Laporta Runs', 'interpreter', 'latex')
     set(gca, 'FontSize', 10)
@@ -105,7 +105,6 @@ function mdata = run_multibolt_custom_sweep(b, Texc, i)
         
     % Set new species names
     b.xsec.spec_names = b.spec.names(1:i);
-    b.xsec.spec_MM = b.spec.mm(1:i);
 
     EN_TD = b.field.EN_TD;
 
