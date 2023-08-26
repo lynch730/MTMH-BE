@@ -9,8 +9,12 @@ function M = field_operator(M, g, zin)
     Delta_KpK = Delta_KpK_coeff(g.K, g.R, g.K', g.R');
     
     % Merge Delta with L1, sets non-zero entries
-    Delta_k_L1 = Delta_KpK .* L1;
-    
+    %  Ignore Delta_KpK coefficient for DC case
+    Delta_k_L1 = L1;
+    if g.NK>1
+        Delta_k_L1 = Delta_k_L1 .* Delta_KpK;
+    end
+
     % Find Non-Zero in L1/L2, Delta
     ind = find( logical(Delta_k_L1)  );
     [i, j] = ind2sub(size(L1), ind);

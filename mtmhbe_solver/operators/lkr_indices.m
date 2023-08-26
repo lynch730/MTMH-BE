@@ -16,9 +16,9 @@ function [L, K, R] = lkr_indices(NL, NK, term_order)
     end
         
     % Extract the valid components of L/K to return
-    if NK>1
+    if NK>1 % AC Field
         ind = mod(L + K, 2) == 0 & ~(K==0 & R==1);
-    else
+    else % DC Field
         ind = R==0;
     end
     

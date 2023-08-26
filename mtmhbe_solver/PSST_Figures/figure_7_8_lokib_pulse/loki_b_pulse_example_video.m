@@ -5,7 +5,7 @@ bd = pulse_settings;
 
 % Settings
 bd.grid.NK = 2;
-bd.grid.NL = 2;
+bd.grid.NL = 8;
 bd.grid.Neps = 200;
 bd.settings.ode_solver = 0;
 
@@ -22,4 +22,4 @@ M = matrix_main(bd.xsec, bd.grid, bd.paths);
 [sol, grid] = solver_main(bd.gas, bd.field, bd.time, bd.settings, M);
 
 % Pulse Animation
- animate_pulse(M, sol, 'isotropic', bd.time, bd.field, true)
+ animate_pulse(M, sol, 'isotropic', bd.time, bd.field, false)
