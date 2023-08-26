@@ -10,14 +10,13 @@ tmax = [10e-12, 25e-12];
 Ncase = numel(P_case);
 
 % Field Cases
-EN_array = sqrt(2) .* [1000.0];
-% EN_array = sqrt(2) .* [400.0, 700.0, 1000.0];
+EN_array = sqrt(2) .* [400.0, 700.0, 1000.0];
 N_EN = numel(EN_array);
 sol = cell(Ncase, N_EN);
 g = cell(Ncase, N_EN);
 
 %% Main Loop
-for k = 2:2
+for k = 1:2
     
     % Set Pressure and maximum time
     bd.gas.press_Pa = P_case(k);
@@ -53,8 +52,9 @@ for k = 2:2
         % Run Time-Dependent
         [sol{k,j}, g{k,j}] = solver_main(bd.gas, bd.field, bd.time, bd.settings, M);
         
-        sol{k,j}.g = g{k,j};
-        animate_step_response(M, sol{k,j}, 'isotropic', sol{k,j}.time, bd.field, true)
+        % Optional plot animation
+        % sol{k,j}.g = g{k,j};
+        % animate_step_response(M, sol{k,j}, 'isotropic', sol{k,j}.time, bd.field, true)
         
         % Clear eedf
         M = rmfield(M, 'eedf0');
@@ -64,7 +64,6 @@ end
 
 %% Save
 % save(fullfile('PSST_Figures','figure_6_stephens_step_response', 'mtmhbe_bench_stephens_step_response.mat'))
-
 
 
 function bd = stephens_settings
@@ -94,7 +93,7 @@ function bd = stephens_settings
         settings.coulomb_f1_component = false;
         settings.equilibrate_matrix = false;
         settings.ode_solver = false;
-        settings.bdf_order = 1;
+        settings.bdf_order = 2;
         settings.qss_opt = false;
         
     %% Display/Plot settings
@@ -107,7 +106,7 @@ function bd = stephens_settings
         settings.tol_rel = 1e-8;    % Float,   Tolerance for relative convergence.
         settings.tol_abs = 1e-15;    % Float,   Tolerance for relative convergence.
         settings.tol_eps = 1e10; % Tolerance for time-dependent convergence of dfdt
-        settings.jac_iter = 10;
+        settings.jac_iter = 5;
         settings.max_jac_iter = 200;
         
     %% Electron Settings
@@ -121,7 +120,7 @@ function bd = stephens_settings
         field.omega = 110e9 * 2 * pi; % Hz to rad/s
         
     %% Time Settings
-        time.ntpw = 500;
+        time.ntpw = 256;
 
     %% Package variables for bolsig+
         bd.paths = paths;
